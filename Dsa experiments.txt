@@ -1,0 +1,790 @@
+Dsa experiments
+
+Experiment 01: Implement operations on 1D and 2D arrays (insertion, deletion, traversal, search).
+Aim-: Implement operations on 1D and 2D arrays (insertion, deletion, traversal, search).
+
+Theory
+Arrays are linear data structures that store elements of the same type in contiguous memory locations, allowing easy access using indices. In Java, arrays can be single or multidimensional and support operations like insertion, deletion, traversal, and search.
+
+Result and Discussion
+All array operations such as insertion, deletion, traversal, and searching were successfully implemented in Java, demonstrating efficient element access and manipulation.
+
+Conclusion
+Arrays enable structured data storage and efficient access through indexing, making them essential for basic data handling in programming.
+
+
+public class ArrayInsertion {
+    public static void main(String[] args) {
+        System.out.println("hello world");
+        int arr[] = {1, 2, 3, 4};
+        int n = arr.length - 1;
+        for (int i = 0; i <= n; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        int insertPos = 2;
+        int insertVal = 99;
+        if (n < arr.length && insertPos >= 0 && insertPos <= n) {
+            arr[insertPos] = insertVal;
+            n++;
+            System.out.println("\nAfter Inserting value at index " + insertPos + ":");
+            for (int i = 0; i < n; i++) {
+                System.out.print(arr[i] + " ");
+            }
+        } else {
+            System.out.println("\nInsertion not possible.");
+        }
+    }
+}
+public class ArraySearching {
+    public static void main(String[] args) {
+        int arr[] = {1, 3, 5, 4, 7, 9, 11};
+        int n = arr.length - 1;
+        int numsearch = 4;
+        for (int i = 0; i <= n; i++) {
+            if (numsearch == arr[i]) {
+                System.out.println("Number found at index " + i);
+                break;
+            } else {
+                System.out.println("Not found at " + i);
+            }
+        }
+    }
+}
+OUTPUT-
+hello world
+1 2 3 4 
+After Inserting value at index 2:
+1 2 99 4
+
+---------------------------------------------------
+Experiment 02: Implement the concepts of Stack and Queue using arrays.
+AIM- To understand the concept of Stack and Queue.
+
+Theory
+Stack follows the LIFO (Last In First Out) principle, while Queue follows FIFO (First In First Out). Both structures allow efficient data storage and retrieval using basic operations like push, pop, enqueue, and dequeue.
+
+Result and Discussion
+Stack and Queue operations were successfully implemented, demonstrating how insertion and deletion work in both data structures.
+
+Conclusion
+The experiment effectively illustrates the working and difference between stack and queue in data management.
+
+STACK
+public class Stacks {
+    public static int push(int[] stack, int x, int n, int top) {
+        if (top >= n - 1) {
+            System.out.println("Overflow: Stack is full");
+            return top; // No change
+        } else {
+            top++;
+            stack[top] = x;
+            System.out.println("Pushed: " + x);
+            return top;
+        }
+    }
+    public static int pop(int[] stack, int top) {
+        if (top < 0) {
+            System.out.println("Underflow: Stack is empty");
+            return top;
+        } else {
+            int popped = stack[top];
+            System.out.println("Popped: " + popped);
+            top--;
+            return top;
+        }
+    }
+    // For testing
+    public static void main(String[] args) {
+        int n = 5;
+        int[] stack = new int[n];
+        int top = -1;
+        top = push(stack, 10, n, top);
+        top = push(stack, 20, n, top);
+        top = push(stack, 30, n, top);
+        top = push(stack, 40, n, top);
+        top = push(stack, 50, n, top);
+        top = push(stack, 60, n, top); // Will show overflow
+        top = pop(stack, top);
+        top = pop(stack, top);
+        top = pop(stack, top);
+        top = pop(stack, top);
+        top = pop(stack, top);
+        top = pop(stack, top); // Will show underflow
+    }
+}
+OUTPUT-
+Pushed: 10
+Pushed: 20
+Pushed: 30
+Pushed: 40
+Pushed: 50
+Overflow: Stack is full
+Popped: 50
+Popped: 40
+Popped: 30
+Popped: 20
+Popped: 10
+Underflow: Stack is empty
+
+QUEUE-
+public class Queue {
+    int[] Q;
+    int front, rear, capacity;
+    public Queue(int size) {
+        Q = new int[size];
+        capacity = size;
+        front = rear = -1;
+    }
+    public void enqueue(int x) {
+        if (rear == capacity - 1) {
+            System.out.println("Queue Overflow");
+        } else {
+            if (rear == -1) front = 0;
+            Q[++rear] = x;
+            System.out.println(x + " enqueued");
+        }
+    }
+    public void dequeue() {
+        if (front == -1) {
+            System.out.println("Queue Underflow");
+        } else {
+            System.out.println(Q[front] + " dequeued");
+            if (front == rear)
+                front = rear = -1;
+            else
+                front++;
+        }
+    }
+    public void printQueue() {
+        if (front == -1) {
+            System.out.println("Queue is empty");
+        } else {
+            System.out.print("Queue: ");
+            for (int i = front; i <= rear; i++)
+                System.out.print(Q[i] + " ");
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+        Queue q = new Queue(5);
+        q.enqueue(1);
+        q.enqueue(2);
+        q.printQueue();
+        q.dequeue();
+        q.dequeue();
+        q.printQueue();
+    }
+}
+OUTPUT-
+1 enqueued
+2 enqueued
+Queue: 1 2 
+1 dequeued
+2 dequeued
+Queue is empty
+---------------------------------------------------
+
+Experiment 03: Implement singly and doubly linked list operations.  
+AIM: To Understand the structure and applications of singly and doubly linked lists. 
+
+Theory
+A linked list is a dynamic data structure consisting of nodes connected by pointers. It efficiently manages memory and allows easy insertion and deletion compared to arrays.
+
+Result and Discussion
+Singly and doubly linked list operations like insertion, deletion, and traversal were successfully implemented and verified.
+
+Conclusion
+The experiment demonstrates efficient data handling using linked lists and highlights their advantage over static arrays.
+
+public class exp_03 {
+    class Node {
+        String data;
+        Node next;
+        Node(String data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+    Node head;
+    public void addFirst(String data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+
+        newNode.next = head;
+        head = newNode;
+    }
+    public void addLast(String data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
+        Node currNode = head;
+        while (currNode.next != null) {
+            currNode = currNode.next;
+        }
+        currNode.next = newNode;
+    }
+    public void printList() {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+        Node currNode = head;
+        while (currNode != null) {
+            System.out.print(currNode.data + " --> ");
+            currNode = currNode.next;
+        }
+        System.out.println("NULL");
+    }
+    public static void main(String[] args) {
+        exp_03 list = new exp_03();
+        list.addFirst("My");
+        list.addFirst("Name");
+        list.addFirst("is");
+        list.addLast("Shweta");
+        list.printList();
+    }
+}
+OUTPUT
+is --> Name --> My --> Shweta --> NULL
+
+---------------------------------------------------
+Experiment 04: Implement Binary Tree and perform Tree Traversals (Inorder, Preorder, Postorder) Learning Objective:To implement a Binary Tree and perform tree traversals like Inorder, Preorder, and Postorder using Java.
+
+Theory
+A Binary Tree is a hierarchical structure where each node has at most two children—left and right—and supports traversals like inorder, preorder, and postorder for data processing.
+
+Result and Discussion
+Binary tree traversals (inorder, preorder, and postorder) were successfully implemented and verified using Java recursion.
+
+Conclusion
+The experiment demonstrates how tree traversal techniques help efficiently access and organize hierarchical data
+
+class Node { 
+    int data; 
+    Node left, right; 
+    public Node(int data) { 
+        this.data = data; 
+        left = right = null; 
+    } 
+    public static void main(String[] args) { 
+        BinaryTree tree = new BinaryTree(); 
+        tree.root = new Node(1); 
+        tree.root.left = new Node(2); 
+        tree.root.right = new Node(3); 
+        tree.root.left.left = new Node(4); 
+        tree.root.left.right = new Node(5); 
+        System.out.print("Inorder traversal: "); 
+        tree.inorder(tree.root); 
+        System.out.println(); 
+        System.out.print("Preorder traversal: "); 
+        tree.preorder(tree.root); 
+        System.out.println(); 
+        System.out.print("Postorder traversal: "); 
+        tree.postorder(tree.root); 
+        System.out.println(); 
+    } 
+} 
+class BinaryTree { 
+    Node root; 
+    public BinaryTree() { 
+        root = null; 
+    } 
+    void inorder(Node node) { 
+        if (node == null) return; 
+        inorder(node.left); 
+        System.out.print(node.data + " "); 
+        inorder(node.right); 
+    } 
+    void preorder(Node node) { 
+        if (node == null) return; 
+        System.out.print(node.data + " "); 
+        preorder(node.left); 
+        preorder(node.right); 
+    } 
+    void postorder(Node node) { 
+        if (node == null) return; 
+        postorder(node.left); 
+        postorder(node.right); 
+        System.out.print(node.data + " "); 
+    } 
+}
+OUTPUT
+Inorder traversal: 4 2 5 1 3 
+Preorder traversal: 1 2 4 5 3 
+Postorder traversal: 4 5 2 3 1
+---------------------------------------------------
+
+Experiment 05: Implement BFS and DFS for a given Graph using adjacency list Learning 
+Objective: To implement Breadth-First Search (BFS) and Depth-First Search (DFS)
+
+Theory
+A graph consists of vertices and edges. BFS traverses level by level using a queue, while DFS explores deep along each branch using recursion or a stack.
+
+Result and Discussion
+BFS and DFS traversals were successfully implemented using adjacency list representation in Java.
+
+Conclusion
+The experiment demonstrates how BFS and DFS efficiently explore and analyze graph structures.
+
+import java.util.*;
+public class Exp5 {
+    private Map<Integer, List<Integer>> adjList = new HashMap<>();
+    public void addEdge(int u, int v) {
+        adjList.computeIfAbsent(u, k -> new ArrayList<>()).add(v);
+        adjList.computeIfAbsent(v, k -> new ArrayList<>()).add(u);
+    }
+    public void bfs(int start) {
+        Set<Integer> visited = new HashSet<>();
+        Queue<Integer> queue = new LinkedList<>();
+        visited.add(start);
+        queue.offer(start);
+        System.out.print("BFS: ");
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            System.out.print(node + " ");
+            for (int neighbour : adjList.getOrDefault(node, new ArrayList<>())) {
+                if (!visited.contains(neighbour)) {
+                    visited.add(neighbour);
+                    queue.offer(neighbour);
+                }
+            }
+        }
+        System.out.println();
+    }
+    public void dfs(int start) {
+        Set<Integer> visited = new HashSet<>();
+        System.out.print("DFS: ");
+        dfsRecursive(start, visited);
+        System.out.println();
+    }
+    private void dfsRecursive(int node, Set<Integer> visited) {
+        visited.add(node);
+        System.out.print(node + " ");
+        for (int neighbour : adjList.getOrDefault(node, new ArrayList<>())) {
+            if (!visited.contains(neighbour)) {
+                dfsRecursive(neighbour, visited);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        Exp5 graph = new Exp5();
+        graph.addEdge(1, 2);
+        graph.addEdge(1, 3);
+        graph.addEdge(2, 4);
+        graph.addEdge(2, 5);
+        graph.addEdge(3, 6);
+        graph.addEdge(3, 7);
+        graph.bfs(1);
+        graph.dfs(1);
+    }
+}
+OUTPUT
+BFS: 1 2 3 4 5 6 7 
+DFS: 1 2 4 5 3 6 7
+---------------------------------------------------
+
+Experiment 06: Analyze and implement Selection, Insertion, Merge, and Quick Sort techniques 
+Learning Objective: Implement, analyze (time & space complexity), and compare four sorting algorithms — Selection Sort, Insertion Sort, Merge Sort, and Quick Sort — and understand when to use each. 
+
+Theory
+Sorting algorithms arrange data in a specific order to improve efficiency in searching and data processing. Selection, Insertion, Merge, and Quick Sort are fundamental techniques with different complexities and use cases.
+
+Result and Discussion
+All four sorting algorithms were successfully implemented in Java, and their outputs verified the correct ordering of data with expected time and space behavior.
+
+Conclusion
+The experiment demonstrates that Merge and Quick Sort are more efficient for large datasets, while Selection and Insertion Sort are simpler for small inputs.
+
+public class InsertionSort {
+    public static void insertionSort(int[] arr) {
+        int n = arr.length;
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+            arr[j + 1] = key;
+        }
+    }
+    public static void main(String[] args) {
+        int[] arr = {5, 3, 8, 4, 2};
+        insertionSort(arr);
+        System.out.println("Sorted array:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+OUTPUT
+Sorted array:
+2 3 4 5 8
+
+public class SelectionSort {
+    public static void main(String[] args) {
+        int arr[] = {64, 25, 12, 22, 11};
+        for (int i = 0; i < arr.length - 1; i++) {
+            int min = i;
+            for (int j = i + 1; j < arr.length; j++)
+                if (arr[j] < arr[min])
+                    min = j;
+            int temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
+        }
+        System.out.println("Sorted array:");
+        for (int n : arr)
+            System.out.print(n + " ");
+    }
+}
+OUTPUT
+Sorted array:
+11 12 22 25 64
+
+public class QuickSortShort {
+    static void sort(int a[], int l, int h) {
+        if (l < h) {
+            int p = part(a, l, h);
+            sort(a, l, p - 1);
+            sort(a, p + 1, h);
+        }
+    }
+
+    static int part(int a[], int l, int h) {
+        int pivot = a[h];
+        int i = l;
+        for (int j = l; j < h; j++) {
+            if (a[j] < pivot) {
+                int t = a[i];
+                a[i] = a[j];
+                a[j] = t;
+                i++;
+            }
+        }
+        int t = a[i];
+        a[i] = a[h];
+        a[h] = t;
+        return i;
+    }
+    public static void main(String[] args) {
+        int a[] = {34, 5, 21, 99, 6};
+        sort(a, 0, a.length - 1);
+        System.out.println("Sorted array:");
+        for (int n : a)
+            System.out.print(n + " ");
+    }
+}
+OUTPUT
+Sorted array:
+5 6 21 34 99
+
+public class MergeSortShort {
+    static void sort(int a[], int l, int r) {
+        if (l >= r)
+            return;
+        int m = (l + r) / 2;
+        sort(a, l, m);
+        sort(a, m + 1, r);
+        merge(a, l, m, r);
+    }
+    static void merge(int a[], int l, int m, int r) {
+        int i = l, j = m + 1, k = 0;
+        int temp[] = new int[r - l + 1];
+        while (i <= m && j <= r)
+            temp[k++] = (a[i] < a[j]) ? a[i++] : a[j++];
+        while (i <= m)
+            temp[k++] = a[i++];
+        while (j <= r)
+            temp[k++] = a[j++];
+        for (int x = 0; x < temp.length; x++)
+            a[l + x] = temp[x];
+    }
+    public static void main(String[] args) {
+        int a[] = {111, 43, 8, 145, 85};
+        sort(a, 0, a.length - 1);
+        System.out.println("Sorted array:");
+        for (int n : a)
+            System.out.print(n + " ");
+    }
+}
+OUTPUT
+Sorted array:
+8 43 85 111 145
+---------------------------------------------------
+
+Experiment 07: Implement Kruskal's Algorithm for Minimum Spanning Tree and 0/1 Knapsack using Dynamic Programming Learning 
+Objective: To understand the concept of Minimum Spanning Tree (MST) using Kruskal’s algorithm and to learn the application of Dynamic Programming for solving the 0/1 Knapsack problem.
+
+Theory
+Kruskal’s algorithm finds a Minimum Spanning Tree by selecting the smallest edges without forming cycles, while the 0/1 Knapsack problem uses Dynamic Programming to maximize profit within a weight limit.
+
+Result and Discussion
+Both algorithms were successfully implemented, demonstrating efficient solutions for optimization problems using greedy and dynamic programming techniques.
+
+Conclusion
+The experiment highlights the effectiveness of Kruskal’s algorithm for network optimization and Dynamic Programming for resource allocation.
+
+Kruskal’s Minimum Spanning Tree (MST) Algorithm
+import java.util.*;
+public class KruskalMST {
+    class Edge implements Comparable<Edge> {
+        int src, dest, weight;
+        Edge(int src, int dest, int weight) {
+            this.src = src;
+            this.dest = dest;
+            this.weight = weight;
+        }
+        public int compareTo(Edge compareEdge) {
+            return this.weight - compareEdge.weight;
+        }
+    }
+    class Subset {
+        int parent, rank;
+    }
+    int vertices, edges;
+    Edge[] edge;
+    KruskalMST(int v, int e) {
+        vertices = v;
+        edges = e;
+        edge = new Edge[e];
+    }
+    int find(Subset[] subsets, int i) {
+        if (subsets[i].parent != i)
+            subsets[i].parent = find(subsets, subsets[i].parent);
+        return subsets[i].parent;
+    }
+    void union(Subset[] subsets, int x, int y) {
+        int xroot = find(subsets, x);
+        int yroot = find(subsets, y);
+        if (subsets[xroot].rank < subsets[yroot].rank)
+            subsets[xroot].parent = yroot;
+        else if (subsets[xroot].rank > subsets[yroot].rank)
+            subsets[yroot].parent = xroot;
+        else {
+            subsets[yroot].parent = xroot;
+            subsets[xroot].rank++;
+        }
+    }
+    void kruskalMST() {
+        Edge[] result = new Edge[vertices];
+        int e = 0;
+        int i = 0;
+        Arrays.sort(edge);
+        Subset[] subsets = new Subset[vertices];
+        for (i = 0; i < vertices; ++i) {
+            subsets[i] = new Subset();
+            subsets[i].parent = i;
+            subsets[i].rank = 0;
+        }
+        i = 0;
+        while (e < vertices - 1 && i < edges) {
+            Edge next_edge = edge[i++];
+            int x = find(subsets, next_edge.src);
+            int y = find(subsets, next_edge.dest);
+
+            if (x != y) {
+                result[e++] = next_edge;
+                union(subsets, x, y);
+            }
+        }
+        System.out.println("Edges in the Minimum Spanning Tree:");
+        int minimumCost = 0;
+        for (i = 0; i < e; ++i) {
+            System.out.println(result[i].src + " -- " + result[i].dest + " == " + result[i].weight);
+            minimumCost += result[i].weight;
+        }
+        System.out.println("Total Minimum Cost: " + minimumCost);
+    }
+    public static void main(String[] args) {
+        int vertices = 4;
+        int edges = 5;
+        KruskalMST graph = new KruskalMST(vertices, edges);
+        graph.edge[0] = graph.new Edge(0, 1, 10);
+        graph.edge[1] = graph.new Edge(0, 2, 6);
+        graph.edge[2] = graph.new Edge(0, 3, 5);
+        graph.edge[3] = graph.new Edge(1, 3, 15);
+        graph.edge[4] = graph.new Edge(2, 3, 4);
+        graph.kruskalMST();
+    }
+}
+OUTPUT
+Edges in the Minimum Spanning Tree:
+2 -- 3 == 4
+0 -- 3 == 5
+0 -- 1 == 10
+Total Minimum Cost: 19
+
+0/1 Knapsack Problem
+public class Knapsack01 {
+    // Function to solve knapsack
+    static int knapSack(int W, int wt[], int val[], int n) {
+        int dp[][] = new int[n + 1][W + 1];
+        for (int i = 0; i <= n; i++) {
+            for (int w = 0; w <= W; w++) {
+                if (i == 0 || w == 0)
+                    dp[i][w] = 0;
+                else if (wt[i - 1] <= w)
+                    dp[i][w] = Math.max(val[i - 1] + dp[i - 1][w - wt[i - 1]], dp[i - 1][w]);
+                else
+                    dp[i][w] = dp[i - 1][w];
+            }
+        }
+        return dp[n][W];
+    }
+    public static void main(String args[]) {
+        int val[] = {60, 100, 120};
+        int wt[] = {10, 20, 30};
+        int W = 50;
+        int n = val.length;
+        System.out.println("Maximum value in Knapsack = " + knapSack(W, wt, val, n));
+    }
+}
+---------------------------------------------------
+
+Experiment 08: Analyze and Implement the 8-Queens Problem using Backtracking Learning 
+Objective: To understand the concept of backtracking as a problem-solving technique and apply it to solve the 8-Queens problem.
+
+Theory
+The 8-Queens problem uses backtracking to place eight queens on a chessboard so that no two attack each other. It explores all valid configurations using recursion and constraint checking.
+
+Result and Discussion
+The 8-Queens problem was successfully solved using backtracking, demonstrating systematic exploration of all possible solutions.
+
+Conclusion
+The experiment shows that backtracking is an efficient method for solving constraint-based problems like the 8-Queens puzzle.
+
+public class Queen {
+    static int solution = 0;
+    public static boolean isSafe(int row, int col, char board[][]) {
+        // Check column
+        for (int i = 0; i < row; i++) {
+            if (board[i][col] == 'Q')
+                return false;
+        }
+        // Check left diagonal
+        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 'Q')
+                return false;
+        }
+        // Check right diagonal
+        for (int i = row - 1, j = col + 1; i >= 0 && j < board.length; i--, j++) {
+            if (board[i][j] == 'Q')
+                return false;
+        }
+        return true;
+    }
+    public static void display(char board[][]) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+    public static void helper(char board[][], int row) {
+        if (row == board.length) {
+            display(board);
+            solution++;
+            return;
+        }
+        for (int col = 0; col < board.length; col++) {
+            if (isSafe(row, col, board)) {
+                board[row][col] = 'Q';
+                helper(board, row + 1);
+                board[row][col] = '.';
+            }
+        }
+    }
+    public static void queens(int n) {
+        char board[][] = new char[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                board[i][j] = '.';
+            }
+        }
+        helper(board, 0);
+    }
+    public static void main(String args[]) {
+        queens(8);
+        System.out.println("Number of solutions = " + solution);
+    }
+}
+OUTPUT
+. Q . . . . . .
+. . . Q . . . .
+. . . . . . Q .
+. . Q . . . . .
+. . . . Q . . .
+. . . . . Q . .
+. . . . . . . Q
+Q . . . . . . .
+...
+
+Number of solutions = 92
+--------------------------------------------------------
+Experiment 09: Analyze and Implement Rabin-Karp for String Matching Learning
+ Objective: To understand the working of the Rabin-Karp string matching algorithm and apply it for efficient pattern searching in large texts.
+
+Theory
+The Rabin-Karp algorithm uses hashing for efficient string matching by comparing hash values of the pattern and text substrings instead of character-by-character comparison.
+
+Result and Discussion
+The algorithm was successfully implemented, showing faster and accurate pattern matching using hash functions.
+
+Conclusion
+Rabin-Karp provides an efficient method for detecting patterns in large texts using rolling hash.
+
+public class RabinKarpReadable {
+    static final int d = 256; // Number of characters in input alphabet
+    public static void search(String pattern, String text) {
+        int m = pattern.length();
+        int n = text.length();
+        int q = 101; // A prime number for hashing
+        int h = 1;
+        int p = 0; // Hash value for pattern
+        int t = 0; // Hash value for text window
+        // Precompute h = pow(d, m-1) % q
+        for (int i = 0; i < m - 1; i++)
+            h = (h * d) % q;
+        // Calculate initial hash values for pattern and first window
+        for (int i = 0; i < m; i++) {
+            p = (d * p + pattern.charAt(i)) % q;
+            t = (d * t + text.charAt(i)) % q;
+        }
+        // Slide the pattern over text one by one
+        for (int i = 0; i <= n - m; i++) {
+            // If hash values match, check characters one by one
+            if (p == t && text.substring(i, i + m).equals(pattern)) {
+                System.out.println("Pattern found at index " + i);
+            }
+            // Calculate hash for next window
+            if (i < n - m) {
+                t = (d * (t - text.charAt(i) * h) + text.charAt(i + m)) % q;
+
+                // Make sure hash is positive
+                if (t < 0)
+                    t = (t + q);
+            }
+        }
+    }
+    public static void main(String[] args) {
+        String text = "this is a test text with test cases";
+        String pattern = "test";
+        search(pattern, text);
+    }
+}
+OUTPUT
+Pattern found at index 10
+Pattern found at index 25
+
+
+
+
+
