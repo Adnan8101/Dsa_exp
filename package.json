@@ -1,0 +1,19 @@
+{
+  "name": "dsa-experiments",
+  "version": "1.0.0",
+  "description": "DSA Experiments Documentation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "keywords": ["dsa", "experiments", "algorithms", "data-structures"],
+  "author": "Your Name",
+  "license": "MIT"
+}
